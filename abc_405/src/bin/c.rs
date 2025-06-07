@@ -14,13 +14,8 @@ fn main() {
     .map(|_| iter.next().unwrap().parse::<usize>().unwrap())
     .collect();
 
-  let mut simple_sum = 0;
-  let mut double_sum = 0;
-
-  for i in 0..n {
-    simple_sum += a[i];
-    double_sum += a[i].pow(2);
-  }
+  let simple_sum: usize = a.iter().sum();
+  let double_sum: usize = a.iter().map(|&x| x.pow(2)).sum();
 
   let ans = (simple_sum.pow(2) - double_sum) / 2;
   println!("{}", ans);
