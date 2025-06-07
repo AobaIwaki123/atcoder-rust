@@ -1,3 +1,15 @@
+use std::io::{self, Read};
+
 fn main() {
-    println!("Hello, world!");
+    let mut buf: String = String::new();
+    io::stdin().read_to_string(&mut buf).unwrap();
+
+    let mut iter: std::str::SplitWhitespace<'_> = buf.split_whitespace();
+
+    let a: i32 = iter.next().unwrap().parse().unwrap();
+    let b: i32 = iter.next().unwrap().parse().unwrap();
+    let c: i32 = iter.next().unwrap().parse().unwrap();
+    let d: i32 = iter.next().unwrap().parse().unwrap();
+
+    println!("{}", if (a,b) > (c,d) { "Yes" } else { "No" });
 }
