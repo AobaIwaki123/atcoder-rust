@@ -8,16 +8,11 @@ fn main() {
     let x: i32 = iter.next().unwrap().parse().unwrap();
     let y: i32 = iter.next().unwrap().parse().unwrap();
 
-    let mut cnt: i32 = 0;
+    let count = (1..=6)
+        .flat_map(|i| (1..=6).map(move |j| (i, j)))
+        .filter(|&(i, j)| i + j >= x || (i - j).abs() >= y)
+        .count();
 
-    for i in 1..=6 {
-        for j in 1..=6 {
-            if i + j >= x || (i - j).abs() >= y{
-                cnt += 1;
-            }
-        }
-    }
-
-    let ans: f64 = cnt as f64 / 36.0;
+    let ans: f64 = count as f64 / 36.0;
     println!("{}", ans);
 }
