@@ -11,5 +11,5 @@ fn main() {
     let c: i32 = iter.next().unwrap().parse().unwrap();
     let d: i32 = iter.next().unwrap().parse().unwrap();
 
-    println!("{}", if (a,b) > (c,d) { "Yes" } else { "No" });
+    println!("{}", if (a, b) > (c, d) { "Yes" } else { "No" });
 }
