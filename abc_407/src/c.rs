@@ -20,12 +20,8 @@ fn main() {
 
     for (_, next) in chars.enumerate() {
         let next_value = next.to_digit(10).unwrap() as i32;
-        // println!("Index {}: current = {}, next = {}", i, current, next_value);
 
-        let diff = current - next_value;
-        // println!("diff: {}", diff);
-        let ops = if diff >= 0 { diff } else { 9 + diff + 1 };
-        // println!("ops: {}", ops);
+        let ops = (current - next_value + 10) % 10;
 
         ans += ops + 1;
 
