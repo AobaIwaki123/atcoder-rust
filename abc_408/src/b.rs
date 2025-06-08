@@ -10,7 +10,6 @@ fn main() {
     let n: usize = iter.next().unwrap().parse().unwrap();
 
     // 1 <= a_i <= 100
-
     let a: BTreeSet<i32> = (0..n)
         .map(|_| iter.next().unwrap().parse::<i32>().unwrap())
         .collect();
