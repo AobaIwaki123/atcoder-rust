@@ -15,7 +15,7 @@ let is_ok = t[0] <= s && t.windows(2).all(|w| w[1] - w[0] <= s);
 
 ## 例 2
 
-````rust
+```rust
 // ベクトルの要素をまとめて文字列に変換し、スペースで結合する例
 let vec: Vec<_> = a.iter().map(|x| x.to_string()).collect();
 println!("{}", vec.join(" "));
