@@ -14,17 +14,7 @@ fn main() {
         .map(|_| iter.next().unwrap().parse::<i32>().unwrap())
         .collect();
 
-    if t[0] > s {
-        println!("No");
-        return;
-    }
+    let is_ok = t[0] <= s && t.windows(2).all(|w| w[1] - w[0] <= s);
 
-    for i in 1..n {
-        if t[i] - t[i - 1] > s {
-            println!("No");
-            return;
-        }
-    }
-
-    println!("Yes");
+    println!("{}", if is_ok { "Yes" } else { "No" });
 }
