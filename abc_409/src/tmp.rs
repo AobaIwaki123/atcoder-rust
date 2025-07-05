@@ -33,7 +33,7 @@ fn main() {
 
     let mut ans = 0_usize;
     for i in 0..(l / 3) {
-        ans += cnt[i] * cnt[i + l / 3] * cnt[i + 1 * l / 3];
+        ans += cnt[i] * cnt[i + l / 3] * cnt[i + 2 * l / 3];
     }
 
     println!("{}", ans);
