@@ -1,32 +1,44 @@
-use std::io::{self, Read};
+use std::io::{self, BufRead};
 
 fn main() {
-    let mut buf = String::new();
-    io::stdin().read_to_string(&mut buf).unwrap();
-    let mut iter = buf.split_whitespace();
+    let stdin = io::stdin();
+    let mut lines = stdin.lock().lines();
 
+    let first_line = lines.next().unwrap().unwrap();
+    let mut iter = first_line.split_whitespace();
     let n: usize = iter.next().unwrap().parse().unwrap();
-    let p: Vec<i32> = (0..n)
-        .map(|_| iter.next().unwrap().parse::<i32>().unwrap())
-        .collect();
+    let l: usize = iter.next().unwrap().parse().unwrap();
 
-    let mut rle: Vec<(char, usize)> = vec![];
-
-    for i in 0..n - 1 {
-        let dir = if p[i] < p[i + 1] { '<' } else { '>' };
-        if rle.is_empty() || rle.last().unwrap().0 != dir {
-            rle.push((dir, 1));
-        } else {
-            rle.last_mut().unwrap().1 += 1;
-        }
+    // 3等分した点をそもそも取れない場合考慮する必要はない
+    if l % 3 != 0 {
+        println!("0");
+        return;
     }
 
-    let mut ans: i64 = 0;
+    let d_line = lines.next().unwrap().unwrap();
+    let d: Vec<usize> = d_line
+        .split_whitespace()
+        .map(|s| s.parse().unwrap())
+        .collect();
 
-    for i in 1..rle.len() - 1 {
-        if rle[i].0 == '>' {
-            ans += (rle[i - 1].1 as i64) * (rle[i + 1].1 as i64);
+    let mut x = 0;
+    let mut cnt = vec![0_usize; l];
+
+    // mod lを取りながらdを1つずつ進めていき点が存在する場所を埋めていく
+    // Note: dは距離のみを表すため同じ位置に複数の点が存在しえる
+    for i in 0..n {
+        if i != 0 {
+            x += d[i - 1]; // l >= 3のため問題ない
         }
+        x %= l;
+        cnt[x] += 1;
+    }
+
+    let mut ans = 0_usize;
+
+    // 解が存在する場合、等間隔の位置に点が現れるのでそれらをかければ良い
+    for i in 0..(l / 3) {
+        ans += cnt[i] * cnt[i + l / 3] * cnt[i + 2 * l / 3];
     }
 
     println!("{}", ans);
