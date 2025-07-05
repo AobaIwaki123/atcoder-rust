@@ -1,16 +1,35 @@
-use std::io::{self, Read};
+use std::io::{self, BufRead};
 
 fn main() {
-  let mut buf = String::new();
-  io::stdin().read_to_string(&mut buf).unwrap();
-  let mut iter = buf.split_whitespace();
+    let stdin = io::stdin();
+    let mut lines = stdin.lock().lines();
 
-  let n: usize = iter.next().unwrap().parse().unwrap();
-  let t = iter.next().unwrap().chars().collect::<Vec<_>>();
-  let a = iter.next().unwrap().chars().collect::<Vec<_>>();
+    // Nの読み込み
+    let n = lines.next().unwrap().unwrap().parse::<usize>().unwrap();
+    
+    // 配列Aの読み込み
+    let a: Vec<usize> = lines
+        .next()
+        .unwrap()
+        .unwrap()
+        .split_whitespace()
+        .map(|x| x.parse().unwrap())
+        .collect();
 
-  let ans = t.iter().zip(a.iter())
-  .any(|(&c1, &c2)| c1 == 'o' && c2 == 'o');
+    // 解答の計算
+    let mut count = vec![0; 1000000001]; // 0から10^9までの数値の出現回数を数える
+    for &num in &a {
+        count[num] += 1;
+    }
 
-println!("{}", if ans { "Yes" } else { "No"});
+    let mut result = 0;
+    let mut sum = 0;
+    for i in 0..=1000000000 {
+        sum += count[i];
+        if sum >= i {
+            result = i;
+        }
+    }
+
+    println!("{}", result);
 }
