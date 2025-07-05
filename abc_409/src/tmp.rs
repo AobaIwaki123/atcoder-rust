@@ -1,23 +1,40 @@
-use std::io;
+use std::io::{self, BufRead};
 
 fn main() {
-    let mut input = String::new();
-    io::stdin().read_line(&mut input).unwrap();
-    let n: usize = input.trim().parse().unwrap();
+    let stdin = io::stdin();
+    let mut lines = stdin.lock().lines();
 
-    input.clear();
-    io::stdin().read_line(&mut input).unwrap();
-    let a: Vec<i32> = input
-        .trim()
+    let first_line = lines.next().unwrap().unwrap();
+    let mut iter = first_line.split_whitespace();
+    let n: usize = iter.next().unwrap().parse().unwrap();
+    let l: usize = iter.next().unwrap().parse().unwrap();
+
+    if l % 3 != 0 {
+        println!("0");
+        return;
+    }
+
+    let d_line = lines.next().unwrap().unwrap();
+    let d: Vec<usize> = d_line
         .split_whitespace()
         .map(|s| s.parse().unwrap())
         .collect();
 
-    for x in (0..=n).rev() {
-        let count = a.iter().filter(|&&val| val >= x as i32).count();
-        if count >= x {
-            println!("{}", x);
-            break;
+    let mut x = 0;
+    let mut cnt = vec![0_usize; l];
+
+    for i in 0..n {
+        if i != 0 {
+            x += d[i - 1];
         }
+        x %= l;
+        cnt[x] += 1;
     }
+
+    let mut ans = 0_usize;
+    for i in 0..(l / 3) {
+        ans += cnt[i] * cnt[i + l / 3] * cnt[i + 1 * l / 3];
+    }
+
+    println!("{}", ans);
 }
