@@ -1,0 +1,17 @@
+# 関数の最大行数
+max_width = 100
+
+# インデントのスペース数
+hard_tabs = false
+
+# ブロックのインデントサイズ
+tab_spaces = 4
+
+# 関数の引数の配置
+force_explicit_abi = true
+
+# 配列の配置
+array_layout = "Block"
+
+# ブロックの配置
+brace_style = "SameLineWhere"

@@ -1,0 +1,19 @@
+# すべてのLintを有効にする
+all = true
+
+# 特定のLintを無効にする例
+# warn:
+#   - "unused-imports"
+#   - "unused-variables"
+
+# デフォルトのLintを有効にする
+default = true
+
+# パニックの検出を有効にする
+panic = true
+
+# テスト時のLintを有効にする
+test = true
+
+# ドキュメントのLintを有効にする
+doc = true
