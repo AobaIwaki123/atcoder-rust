@@ -12,7 +12,7 @@ fn main() {
     let mut ans = false;
 
     for i in 0..n {
-        if t.chars().nth(i) == a.chars().nth(i) {
+        if t.chars().nth(i).unwrap() == 'o' && a.chars().nth(i).unwrap() == 'o' {
             ans = true;
         }
     }
