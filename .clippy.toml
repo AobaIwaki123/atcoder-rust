@@ -1,19 +1,19 @@
-# すべてのLintを有効にする
-all = true
+# コード品質のチェックを有効にする
+warn-on-all-wildcard-imports = true
 
-# 特定のLintを無効にする例
-# warn:
-#   - "unused-imports"
-#   - "unused-variables"
-
-# デフォルトのLintを有効にする
-default = true
+# テストコードの特別な設定
+allow-dbg-in-tests = true
+allow-expect-in-tests = true
+allow-unwrap-in-tests = true
 
 # パニックの検出を有効にする
-panic = true
+allow-panic-in-tests = true
 
-# テスト時のLintを有効にする
-test = true
+# コードの複雑さを制限する
+max-fn-params-bools = 3
+max-struct-bools = 3
+max-include-file-size = 10000
+max-trait-bounds = 5
 
-# ドキュメントのLintを有効にする
-doc = true
+# 複雑さの閾値を設定する
+cognitive-complexity-threshold = 15
