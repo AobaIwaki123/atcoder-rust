@@ -9,9 +9,3 @@ tab_spaces = 4
 
 # 関数の引数の配置
 force_explicit_abi = true
-
-# 配列の配置
-array_layout = "Block"
-
-# ブロックの配置
-brace_style = "SameLineWhere"

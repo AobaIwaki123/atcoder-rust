@@ -29,3 +29,15 @@ path = "src/b.rs"
 name = "c"
 path = "src/c.rs"
 ```
+
+## フォーマッター
+
+```sh
+$ cargo fmt
+```
+
+## クリッパー
+
+```sh
+$ cargo clippy -- -A clippy::all
+```
