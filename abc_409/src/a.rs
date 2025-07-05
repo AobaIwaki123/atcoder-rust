@@ -7,6 +7,7 @@ fn main() {
         .expect("Failed to read input");
     let mut iter = buf.split_whitespace();
 
+    let _n: usize = iter.next().expect("Missing N").parse().expect("Invalid N");
     let t = iter.next().expect("Missing T").chars().collect::<Vec<_>>();
     let a = iter.next().expect("Missing A").chars().collect::<Vec<_>>();
 
